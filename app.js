@@ -14,6 +14,8 @@ var config = require('./config/index');
 var routes = require('./routes/index');
 var bookings = require('./routes/bookings');
 
+mongoose.connect(config.getDbConnectionString());
+
 var app = express();
 
 // view engine setup
