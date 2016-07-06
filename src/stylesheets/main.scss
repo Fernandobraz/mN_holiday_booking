@@ -1,0 +1,85 @@
+body { 
+
+}
+
+a {
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0; 
+}
+
+td, th {
+  padding: 5px 10px;
+  border: 1px solid;
+  text-align: center;
+}
+
+table {
+  text-transform: capitalize;  
+}
+
+
+.nav-bar {
+    width: 20%;
+    float: left;
+    padding: 20px;
+}
+
+.nav-bar li {
+    margin-bottom: 10px;
+}
+
+.content {
+  float: left;
+  width: 80%;
+}
+/*.calendar-page {
+   h2 {
+     color: #aa2222;
+   }
+ }*/
+.date-input {
+  span {
+    margin-left: 15px;
+  }
+}
+.date-input--day {
+  font-size: 2em;
+  font-weight: bold;
+  color: #aa2222
+}
+
+.rejected {
+  a {
+    color: #900e0e;
+    cursor: pointer;
+  }
+}
+.accepted {
+  span {
+    color: #00bd23;
+  }
+}
+.pending {
+  span {
+    color: #8a8a8a  
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

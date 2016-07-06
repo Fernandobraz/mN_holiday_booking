@@ -1,0 +1,30 @@
+<% include ../layouts/header.ejs %>
+<h1> Request's History</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Requested by</th>
+      <th>Date of request</th>
+      <th>First date of holiday</th>
+      <th>Last date of holiday</th>
+      <th>Duration</th>
+      <th>Status</th>
+      <th>Undo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% bookings.forEach(function(booking){ %>
+      <tr>
+        <td><%= booking.name %></td>
+        <td><%= moment(booking.dateOfRequest).format('MMM Do YYYY') %></td>
+        <td><%= moment(booking.startDate).format('MMM Do YYYY') %></td>
+        <td><%= moment(booking.endDate).format('MMM Do YYYY') %></td>
+        <td><%= booking.totalDays %></td>
+        <td><%= booking.status %></td>
+        <td><a href="#">Undo action</a></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<% include ../layouts/footer.ejs %>

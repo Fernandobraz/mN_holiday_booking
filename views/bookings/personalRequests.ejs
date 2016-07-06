@@ -1,0 +1,51 @@
+<% include ../layouts/header.ejs %>
+<h1> <%= currentUser.firstName + " " + currentUser.lastName%> requests</h1>
+<p>Holidays remaining: <strong><%= currentUser.holidaysLeft %></strong></p>
+<% if(bookings.length > 0) { %>
+<table>
+  <thead>
+    <tr>
+      <th>Date of request</th>
+      <th>First date of holiday</th>
+      <th>Last date of holiday</th>
+      <th>Total number of holiday days</th>
+      <th>Director 1 approval</th>
+      <th>Director 2 approval</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% bookings.forEach(function(booking){ %>
+      <tr>
+        <td><%= moment(booking.dateOfRequest).format('MMM Do YYYY') %></td>
+        <td><%= moment(booking.startDate).format('MMM Do YYYY') %></td>
+        <td><%= moment(booking.endDate).format('MMM Do YYYY') %></td>
+        <td><%= booking.totalDays %></td>
+        <td>
+          <% if(booking.authorisation1 === false){ %>
+            False
+          <% }else{ %>
+            <a href="/bookings/decision/<%= booking._id %>/1">True</a>
+          <% } %>
+        </td>
+        <td>
+          <% if(booking.authorisation2 === false){ %>
+            False
+          <% }else{ %>
+            <a href="/bookings/decision/<%= booking._id %>/2">True</a>
+          <% } %>
+        </td>
+        <td class="<%= booking.status %>"><% if(booking.status === "rejected"){ %>
+          <a href="/bookings/decision/<%= booking._id %>/0"><%= booking.status %></a>
+        <% }else{ %>
+          <span><%= booking.status %></span>
+        <% } %></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+<% }else{ %>
+  <h3>You have no booked holidays...</h3>
+<% } %>
+
+<% include ../layouts/footer.ejs %>

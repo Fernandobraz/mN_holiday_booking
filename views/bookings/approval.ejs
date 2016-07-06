@@ -1,0 +1,21 @@
+<% include ../layouts/header.ejs %>
+<h1> Approval info</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Director</th>
+      <th>Date of decision</th>
+      <th>Decision</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% approvalInfo.forEach(function(info){ %>
+        <tr>
+          <td><%= info.directorName %></td>
+          <td><%= info.date %></td>
+          <td><%= info.decision %></td>
+        </tr>
+      <% }) %>
+  </tbody>
+</table>
+<% include ../layouts/footer.ejs %>

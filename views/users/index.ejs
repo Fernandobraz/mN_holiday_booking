@@ -1,0 +1,32 @@
+<% include ../layouts/header.ejs %>
+<% if(typeof(message) !== "undefined"){ %>
+  <% if(message.length > 0) { %>
+     <div class="alert alert-danger"><%- message %></div>
+  <% } %>
+<% } %>
+<a href="/users/register"> New User</a> |
+<a href="/users/refresh/" onclick="return confirm('Are you sure you want to referesh the year?');">Refresh Year</a>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Admin?</th>
+      <th>Holidays Left</th>
+      <th>Functions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.forEach(function(user){ %>
+      <tr>
+        <td><%= user.firstName + " " + user.lastName %></td>
+        <td><%= user.email %></td>
+        <td><%= user.admin %></td>
+        <td><%= user.holidaysLeft %></td>
+        <td><a href="/users/edit/<%= user._id %>">Edit</a> | <% if(user._id + "" !== currentUser._id + "") {%><a href="/users/delete/<%= user._id %>">Delete</a><% }else{ %>Delete<% } %></td>        
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<% include ../layouts/footer.ejs %>

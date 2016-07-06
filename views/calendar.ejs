@@ -1,0 +1,30 @@
+<% include layouts/header.ejs %>
+<% var months = [0, 1, 2, 3, 4, 5] %>
+<div class="calendar-page">
+  <h1>Calendar</h1>
+  <h5>Today: <%= moment().format("MMMM Do YYYY") %></h5>
+
+
+
+  <% months.forEach(function(month){ %>
+    <% var thisMonth = moment().add(month,'months').format("MMM") %>
+    <h2><%= thisMonth %></h2>
+    <% bookings.forEach(function(booking){ %>
+      <% if(moment(booking.startDate).format('MMM') === thisMonth && moment(booking.startDate).diff(moment(), 'days')>= 0){ %>
+        <div class="date-input">
+          <span class="date-input--day"><%= moment(booking.startDate).format("DD") %></span>
+          <span><%= booking.name %></span>
+          <span>Starts Holiday</span>
+        </div>
+      <% } %>
+      <% if(moment(booking.endDate).format('MMM') === thisMonth){ %>
+        <div class="date-input">
+          <span class="date-input--day"><%= moment(booking.endDate).format("DD") %></span>
+          <span><%= booking.name %></span>
+          <span>Ends Holiday</span>
+        </div>
+      <% } %>
+    <% }) %>
+  <% }) %>
+</div>
+<% include layouts/footer.ejs %>

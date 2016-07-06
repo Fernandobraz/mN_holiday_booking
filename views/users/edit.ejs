@@ -1,0 +1,46 @@
+<% include ../layouts/header.ejs %>
+<div class="col-sm-6">
+
+    <h1><span class="fa fa-sign-in"></span> Edit User</h1>
+
+    <!-- show any messages that come back with authentication -->
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%- message %></div>
+    <% } %>
+
+    <!-- LOGIN FORM -->
+    <form action="/users/register" method="post">
+        <input type="hidden" value="<%= user._id %>" name="id">
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" name="email" value="<%= user.email %>">
+        </div>
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" name="firstName" value="<%= user.firstName %>">
+        </div>
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="lastName" value="<%= user.lastName %>">
+        </div>
+        <div class="form-group">
+            <label>Total Number of Holidays</label>
+            <input type="text" class="form-control" name="holidays" value="<%= user.holidaysLeft %>">
+        </div>
+        <div class="form-group">
+            <label>Admin?</label>
+            <select name="admin" class="form-control">
+                <option value="false" <% if(user.admin === false){ %>selected <% } %>>No</option>
+                <option value="true" <% if(user.admin === true){ %>selected <% } %>>Yes</option>
+            </select>
+        </div>
+        <!--<div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password">
+        </div>-->
+        <button type="submit" class="btn btn-warning btn-lg">Register</button>
+        <a href="/users">Cancel</a>
+    </form>
+</div>
+
+<% include ../layouts/footer.ejs %>
