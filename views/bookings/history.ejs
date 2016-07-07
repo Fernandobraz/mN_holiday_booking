@@ -20,8 +20,18 @@
         <td><%= moment(booking.startDate).format('MMM Do YYYY') %></td>
         <td><%= moment(booking.endDate).format('MMM Do YYYY') %></td>
         <td><%= booking.totalDays %></td>
-        <td><%= booking.status %></td>
-        <td><a href="#">Undo action</a></td>
+        <td class="<%= booking.status %>">
+          <span><%= booking.status %></span>
+        </td>
+        <td>
+          <% if(moment(booking.startDate).diff(moment(), 'days')>= 0){ %>
+            <a href="/bookings/undo/<%= booking._id %>">Undo action</a>
+            <% }else{ %>
+              <div class="tooltips"> - 
+                <span class="tooltiptext">This request is too old to undo</span>
+              </div>
+            <% } %>
+        </td>
       </tr>
     <% }); %>
   </tbody>
