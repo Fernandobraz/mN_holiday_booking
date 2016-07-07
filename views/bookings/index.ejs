@@ -6,8 +6,8 @@
     <tr>
       <th>Requested by</th>
       <th>Date of request</th>
-      <th>First date of holiday</th>
-      <th>Last date of holiday</th>
+      <th>Start Date</th>
+      <th>End Date</th>
       <th>Duration</th>
       <th>Director 1 approval</th>
       <th>Director 2 approval</th>
@@ -23,13 +23,13 @@
         <td><%= booking.totalDays %></td>
         <td>
           <% if(booking.authorisation1 === false){ %>
-          <form action="/bookings/approval/1" method="post">
+          <form class="form-approval" action="/bookings/approval/1" method="post">
             <input type="hidden" name="id" value="<%= booking._id %>">
-            <input type="submit" value="Approve">
+            <input class="btn-approve" type="submit" value="Approve">
           </form>
-          <form action="/bookings/reject/1" method="post">
+          <form class="form-approval" action="/bookings/reject/1" method="post">
             <input type="hidden" name="id" value="<%= booking._id %>">
-            <input type="submit" value="Reject">
+            <input class="btn-reject" type="submit" value="Reject">
           </form>
           <% }else{ %>
             <a href="/bookings/decision/<%= booking._id %>/1">True</a>
@@ -37,13 +37,13 @@
         </td>
         <td>
          <% if(booking.authorisation2 === false){ %>
-          <form action="/bookings/approval/2" method="post">
+          <form class="form-approval" action="/bookings/approval/2" method="post">
             <input type="hidden" name="id" value="<%= booking._id %>">
-            <input type="submit" value="Approve">
+            <input class="btn-approve" type="submit" value="Approve">
           </form>
-          <form action="/bookings/reject/2" method="post">
+          <form class="form-approval" action="/bookings/reject/2" method="post">
             <input type="hidden" name="id" value="<%= booking._id %>">
-            <input type="submit" value="Reject">
+            <input class="btn-reject" type="submit" value="Reject">
           </form>
           <% }else{ %>
             <a href="/bookings/decision/<%= booking._id %>/2">True</a>

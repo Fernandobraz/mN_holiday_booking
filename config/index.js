@@ -6,6 +6,8 @@ var configValues = require('./config');
 
 module.exports = {
     getDbConnectionString: function(){
+    	console.log("Connecting to Databse...");
+    	console.log("Database Connected!");
         return 'mongodb://' + configValues.uname + ':' + configValues.pwd + '@ds017852.mlab.com:17852/holiday-booking';
     }
 }

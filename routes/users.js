@@ -1,6 +1,7 @@
 "use strict";
 var User     = require('../models/user');
 var mongoose = require('mongoose');
+var authorisations  = require('../helpers/authorisations');
 
 // app/routes.js
 module.exports = function(app, passport) {
@@ -33,22 +34,22 @@ module.exports = function(app, passport) {
     // SIGNUP ==============================
     // =====================================
     // show the signup form
-    app.get('/users/register', isLoggedIn, function(req, res) {
+    app.get('/users/register', authorisations.isLoggedIn, function(req, res) {
 
         // render the page and pass in any flash data if it exists
         res.render('users/new.ejs', {currentUser : req.user, message: req.flash('signupMessage') });
     });
 		
-		app.get('/users/edit/:id', isLoggedIn, function(req, res) {
-			 User.findById({ _id: req.params.id }, function(err, user){
-        if(err) throw err;
+		app.get('/users/edit/:id', authorisations.isLoggedIn, function(req, res) {
+			User.findById({ _id: req.params.id }, function(err, user){
+	    	if(err) throw err;
 
-        res.render('users/edit.ejs', { currentUser : req.user, user: user, message: req.flash('signupMessage') });
-    	}); 
+	    	res.render('users/edit.ejs', { currentUser : req.user, user: user, message: req.flash('signupMessage') });
+	  	}); 
 		});
 		
     // process the signup form
-    app.post('/users/register', isLoggedIn, function(req, res) {
+    app.post('/users/register', authorisations.isLoggedIn, function(req, res) {
         var email = req.body.email;
         var firstName = req.body.firstName;
         var lastName = req.body.lastName;
@@ -94,7 +95,7 @@ module.exports = function(app, passport) {
     });
 		
 		
-		app.get('/users', isLoggedIn, function(req, res) {
+		app.get('/users', authorisations.isLoggedIn, function(req, res) {
 			var gotError = "";
 			if(typeof(req.query.error) !== "undefined"){
 				if(req.query.error === "001")
@@ -118,7 +119,7 @@ module.exports = function(app, passport) {
         res.redirect('/users/login');
     });
 		
-	app.get('/users/delete/:id', isLoggedIn, function(req, res){
+	app.get('/users/delete/:id', authorisations.isLoggedIn, function(req, res){
 		if(req.params.id === req.user.id){
 			res.redirect("/users/?error=001");
 		}else{
@@ -130,7 +131,7 @@ module.exports = function(app, passport) {
 			});
 		}
 	});
-	app.get("/users/refresh", isLoggedIn, isAdmin, function(req, res){
+	app.get("/users/refresh", authorisations.isLoggedIn, authorisations.isAdmin, function(req, res){
 		User.find({}, function(err, users){
 			if(err) throw err;
 			
@@ -145,22 +146,3 @@ module.exports = function(app, passport) {
 		});
 	});
 };
-function isAdmin(req, res, next) {
-
-    // if user is authenticated in the session, carry on 
-    if (req.user.admin)
-        return next();
-
-    // if they aren't redirect them to the home page
-    res.redirect('/');
-}
-// route middleware to make sure a user is logged in
-function isLoggedIn(req, res, next) {
-
-    // if user is authenticated in the session, carry on 
-    if (req.isAuthenticated())
-        return next();
-
-    // if they aren't redirect them to the home page
-    res.redirect('/users/login');
-}

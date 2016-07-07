@@ -23,7 +23,16 @@
         <td><%= user.email %></td>
         <td><%= user.admin %></td>
         <td><%= user.holidaysLeft %></td>
-        <td><a href="/users/edit/<%= user._id %>">Edit</a> | <% if(user._id + "" !== currentUser._id + "") {%><a href="/users/delete/<%= user._id %>">Delete</a><% }else{ %>Delete<% } %></td>        
+        <td>
+          <a href="/users/edit/<%= user._id %>">Edit</a> | 
+          <% if(user._id + "" !== currentUser._id + "") {%>
+            <a href="/users/delete/<%= user._id %> " onclick="return confirm('Are you sure you want to referesh the year?');">Delete</a>
+          <% }else{ %>
+            <div class="tooltips"> Delete 
+                <span class="tooltiptext">You cannot delete the logged in account</span>
+              </div>
+          <% } %>
+        </td>        
       </tr>
     <% }); %>
   </tbody>

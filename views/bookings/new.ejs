@@ -3,8 +3,7 @@
     <% if(typeof(message) !== "undefined" && message.length > 0){ %>
     <div class="alert alert-danger"><%- message %></div>
     <% } %>
-    <h1><span class="fa fa-sign-in"></span> Holiday Request</h1>
-    <p><%= today.format('YYYY-MM-DD') %></p>
+    <h1>Holiday Request</h1>
     <!-- LOGIN FORM -->
     <form action="/bookings/register" method="post">
         <input type="hidden" name="userId" value="<%= currentUser._id %>">
@@ -17,19 +16,19 @@
             <input type="date" readonly class="form-control" name="dateOfRequest" value="<%= today.format('YYYY-MM-DD') %>">
         </div>
         <div class="form-group">
-            <label>First Date of Holiday </label>
+            <label>Start Date </label>
             <input type="date" class="form-control js-startDate" name="startDate">
         </div>
         <div class="form-group">
-            <label>Last Date of Holiday </label>
+            <label>End Date</label>
             <input type="date" class="form-control js-endDate" name="endDate">
         </div>
         <div class="form-group">
-            <label>Total Number of Holidays</label>
+            <label>Total of Holidays</label>
             <input type="text" readonly class="form-control js-totalDays" name="totalDays">
         </div>
         <button type="submit" class="btn btn-warning btn-lg">Register</button>
-        <a href="/bookings">Cancel</a>
+        <a href="/bookings/personal_requests">Cancel</a>
     </form>
 </div>
 <script>

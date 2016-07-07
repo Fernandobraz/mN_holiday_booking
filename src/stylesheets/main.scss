@@ -18,13 +18,8 @@ td, th {
   text-align: center;
 }
 
-table {
-  text-transform: capitalize;  
-}
-
-
 .nav-bar {
-    width: 20%;
+    width: 17%;
     float: left;
     padding: 20px;
 }
@@ -35,7 +30,7 @@ table {
 
 .content {
   float: left;
-  width: 80%;
+  width: 83%;
 }
 /*.calendar-page {
    h2 {
@@ -52,11 +47,18 @@ table {
   font-weight: bold;
   color: #aa2222
 }
-
+.pending, .rejected, .accepted{
+  text-transform: capitalize;
+  font-weight: bold;
+}
 .rejected {
   a {
     color: #900e0e;
     cursor: pointer;
+    text-decoration: underline;
+  }
+  span{
+    color: #900e0e;
   }
 }
 .accepted {
@@ -68,6 +70,51 @@ table {
   span {
     color: #8a8a8a  
   }
+}
+
+.tooltips {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: #777777;
+
+    .tooltiptext {
+      visibility: hidden;
+      width: 150px;
+      background-color: #951a1a;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      right: -5px;
+    }
+}
+
+.tooltips:hover {
+  .tooltiptext {
+    visibility: visible;
+  }
+}
+
+.form-approval{
+  float: left;
+  padding: 0 0 0 5px;
+}
+
+.btn-approve, .btn-reject{
+  width: 70px;
+  color: #FFFFFF;
+  border: 0;
+}
+.btn-approve{
+  background-color: #00BD23;
+}
+.btn-reject{
+  background-color: #951A1A;
 }
 
 
