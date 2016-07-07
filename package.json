@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "postinstall": "gulp && bower install"
+    "postinstall": "gulp build && bower install"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
