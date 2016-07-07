@@ -1,0 +1,17 @@
+{
+  "name": "holidays_book",
+  "description": "Tool for mN users to book holidays",
+  "main": "app.js",
+  "authors": [
+    "Fernando Braz <fernandob@thisismn.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Fernandobraz/mN_holiday_booking",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
